@@ -9,6 +9,8 @@ import {
   Alert,
   ScrollView,
   TouchableOpacity,
+  TextInput,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -25,7 +27,33 @@ export default function App() {
           color="#c1262c"
           style={{ marginBottom: 30 }}
         />
-        {[0, 1, 2, 3, 4].map((i) => {
+        <FlatList
+          data={[0, 1, 2, 3, 4]}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => Alert.alert(`You pressed image #${item + 1}`)}
+              >
+                <Image
+                  source={{
+                    uri: `https://picsum.photos/500/300?random=${
+                      randomNum + item
+                    }`,
+                  }}
+                  style={{ width: "100%", height: 160, marginBottom: 30 }}
+                />
+                <Button
+                  onPress={() => Alert.alert("Click for more cool images")}
+                  title="Cool images ahead"
+                  color="#c1262c"
+                />
+              </TouchableOpacity>
+            );
+          }}
+          keyExtractor={(item) => String(item)}
+        />
+
+        {/* {[0, 1, 2, 3, 4].map((i) => {
           return (
             <TouchableOpacity>
               <Image
@@ -42,7 +70,7 @@ export default function App() {
               />
             </TouchableOpacity>
           );
-        })}
+        })} */}
         <View
           style={{
             borderWidth: 2,
