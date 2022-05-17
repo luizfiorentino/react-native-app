@@ -8,6 +8,7 @@ import {
   Button,
   Alert,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App() {
@@ -26,13 +27,20 @@ export default function App() {
         />
         {[0, 1, 2, 3, 4].map((i) => {
           return (
-            <Image
-              key={i}
-              source={{
-                uri: `https://picsum.photos/500/300?random=${randomNum + i}`,
-              }}
-              style={{ width: "100%", height: 160, marginBottom: 30 }}
-            />
+            <TouchableOpacity>
+              <Image
+                key={i}
+                source={{
+                  uri: `https://picsum.photos/500/300?random=${randomNum + i}`,
+                }}
+                style={{ width: "100%", height: 160, marginBottom: 30 }}
+              />
+              <Button
+                onPress={() => Alert.alert("Click for more cool images")}
+                title="Cool images"
+                color="#c1262c"
+              />
+            </TouchableOpacity>
           );
         })}
         <View
